@@ -1,0 +1,23 @@
+﻿@model List<Spotify.Servises.Album>
+ 
+
+<div class="container">
+    <h1>New Releases</h1>
+    <ul>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var album in Model)
+            {
+                <li>
+                    <h2>@(album?.Name ?? "Unknown Album")</h2>
+                    <p>By: @(album?.Artists != null ? string.Join(", ", album.Artists.Select(a => a.Name)) : "Unknown Artist")</p>
+                    <p><a href="@(album?.ExternalUrls?.Spotify ?? "#")" target="_blank">Listen on Spotify</a></p>
+                </li>
+            }
+        }
+        else
+        {
+            <li>No albums found.</li>
+        }
+    </ul>
+</div>
